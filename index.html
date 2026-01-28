@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>a letter</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+
+  <header class="page-header">
+    <h1>for you, love</h1>
+  </header>
+
+  <div id="hearts" aria-hidden="true"></div>
+
+  <main class="container">
+    <div class="card">
+      <div class="envelope-wrap">
+        <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Buka amplop">
+          <svg viewBox="0 0 320 200" class="envelope-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="gBody" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#9b1f24" />
+                <stop offset="100%" stop-color="#7a0f18" />
+              </linearGradient>
+              <linearGradient id="gFlap" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#b1353b" />
+                <stop offset="100%" stop-color="#8b1218" />
+              </linearGradient>
+            </defs>
+
+            <rect x="6" y="44" rx="12" ry="12" width="308" height="140" class="env-body" fill="url(#gBody)" stroke="#000" stroke-width="1.6" />
+            <rect x="14" y="52" rx="8" ry="8" width="292" height="120" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.0" />
+            <path d="M20 66 L300 66" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+            <path d="M0 44 L160 -140 L320 44 L0 44 Z" class="env-flap" fill="none" stroke-linejoin="round" />
+            <path d="M22 46 L160 86 L298 46" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" fill="none" />
+          </svg>
+        </div>
+
+        <article class="letter" id="letter" aria-hidden="true">
+          <img id="letterPhoto" class="letter-photo" src="img/jogja.jpeg" alt="Foto di surat">
+          <div class="letter-content">
+            <h2 id="letterTitle">hey...</h2>
+            <p id="letterBody">terima kasih sudah menjadi pasanganku. aku sangat senang karena memiliku mu atau bahkan hanya sekedar saja itu sudah cukup kok. kau orang baik dan semua orang menyukai mu, terutama para kantin akwokakwok. semoga kamu dijauhi oleh hal hal buruk dan dilindungi oleh kebaikan.</p>
+            <p class="signature" id="letterSignature">Salam tkj,<br>insial A</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

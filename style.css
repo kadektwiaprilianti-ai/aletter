@@ -1,0 +1,87 @@
+:root{
+	--accent:#7a0f18; /* maroon accent */
+	--accent-soft:#ffeced;
+	--paper:#fffefb;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;background:#ffffff}
+
+/* Header */
+.page-header{position:fixed;left:0;right:0;top:18px;display:flex;justify-content:center;pointer-events:none}
+.page-header h1{margin:0;padding:6px 12px;background:linear-gradient(90deg,var(--accent) 0%,#b3353b 100%);color:#fff;font-weight:600;border-radius:999px;font-size:20px;letter-spacing:0.6px;box-shadow:0 6px 18px rgba(122,15,24,.12);pointer-events:auto}
+
+.container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:64px 20px}
+.card{width:360px;max-width:92vw}
+
+/* envelope area */
+.envelope-wrap{position:relative;display:flex;align-items:center;justify-content:center}
+
+/* CSS envelope (maroon) */
+.envelope{width:420px;max-width:92vw;height:260px;position:relative;cursor:pointer;transform-style:preserve-3d;display:flex;align-items:center;justify-content:center}
+.envelope-svg{width:420px;height:260px;display:block}
+.env-body{filter:drop-shadow(0 14px 30px rgba(122,15,24,.16));stroke:#000}
+.env-flap{transform-box:fill-box;transform-origin:50% 0%;transform-style:preserve-3d;backface-visibility:hidden;filter:drop-shadow(0 10px 22px rgba(0,0,0,.14));stroke:none}
+.envelope:focus .env-flap,.envelope:hover .env-flap{transition:transform .22s ease}
+
+/* animate flap open/close (apply to flap element) */
+.envelope.opening .env-flap{animation:flapOpen .55s forwards cubic-bezier(.2,.9,.2,1)}
+.envelope.closing .env-flap{animation:flapClose .55s forwards cubic-bezier(.2,.9,.2,1)}
+
+/* letter (paper) */
+.letter{position:absolute;left:50%;top:32px;transform:translate(-50%,32px) scale(.98);width:420px;max-width:92vw;background:linear-gradient(180deg,#fffdf9,#fff9f4);border-radius:8px;padding:18px;box-shadow:0 34px 80px rgba(0,0,0,.24);opacity:0;pointer-events:none;transition:transform .55s cubic-bezier(.2,.9,.2,1),opacity .45s ease}
+.envelope.opening ~ .letter,.envelope.opening + .letter{transform:translate(-50%,-120px) rotateX(0deg) scale(1);opacity:1;pointer-events:auto}
+.envelope.closing ~ .letter,.envelope.closing + .letter{transform:translate(-50%,20px) rotateX(12deg) scale(.98);opacity:0;pointer-events:none}
+.letter{border:1px solid rgba(0,0,0,.06)}
+.letter::before{content:'';position:absolute;left:10px;right:10px;top:10px;height:8px;background:linear-gradient(90deg,rgba(122,15,24,.02),rgba(122,15,24,.00));border-radius:4px}
+.letter-photo{width:100%;height:160px;object-fit:cover;border-radius:6px;border:6px solid rgba(122,15,24,.04);display:block;margin-bottom:10px}
+.letter-content h2{margin:0 0 6px 0;color:var(--accent)}
+.letter-content p{margin:0 0 8px 0;color:#333;line-height:1.5}
+.signature{color:var(--accent);font-weight:600}
+.close{position:absolute;top:8px;right:10px;border:0;background:transparent;color:var(--accent);font-size:20px;line-height:1;cursor:pointer}
+
+/* envelope open animation (3D flip of the envelope image) */
+/* legacy image selectors removed - using .envelope */
+
+@keyframes flapOpen{
+	0%{transform:rotateX(0deg) translateZ(0) translateY(0)}
+	50%{transform:rotateX(-110deg) translateZ(8px) translateY(-6px)}
+	100%{transform:rotateX(-150deg) translateZ(18px) translateY(-12px)}
+}
+
+@keyframes flapClose{
+	0%{transform:rotateX(-150deg) translateZ(18px) translateY(-12px)}
+	50%{transform:rotateX(-80deg) translateZ(8px) translateY(-6px)}
+	100%{transform:rotateX(0deg) translateZ(0) translateY(0)}
+}
+
+.envelope-wrap{perspective:900px}
+.letter{transform-origin:50% 0%;backface-visibility:hidden}
+
+/* envelope close (reverse) */
+.envelope.closing{animation:envelopeClose .55s forwards cubic-bezier(.2,.9,.2,1)}
+@keyframes envelopeClose{
+	0%{transform:rotateX(-80deg) translateY(-44px) translateZ(20px);opacity:0}
+	60%{transform:rotateX(-30deg) translateY(-12px) translateZ(6px);opacity:.9}
+	100%{transform:rotateX(0) translateY(0) translateZ(0);opacity:1}
+}
+
+/* hearts floating */
+#hearts{position:fixed;left:0;right:0;top:0;bottom:0;pointer-events:none;overflow:hidden}
+.heart{position:absolute;bottom:calc(-8vh - 6px);display:block;pointer-events:none;font-size:18px}
+.heart::before{content:'❤';display:block;color:var(--accent);opacity:.75;filter:drop-shadow(0 2px 6px rgba(122,15,24,.12))}
+
+@keyframes drift {
+	0%{transform:translate3d(0,0,0) rotate(0deg);opacity:var(--o, .85)}
+	100%{transform:translate3d(var(--tx, 0px), var(--ty, -120vh), 0) rotate(var(--rot, 0deg));opacity:0}
+}
+
+/* small screens */
+@media (max-width:420px){
+	.page-header h1{font-size:16px;padding:6px 10px}
+	.letter{width:86vw}
+	.envelope-img{width:86vw}
+}
+
+/* helper (visually hidden for accessibility) */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
